@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using console_theater.Interfaces;
 
@@ -16,7 +17,7 @@ namespace console_theater.Models
 
         private List<Room> Rooms { get; set; }
 
-
+        public Room activeRoom { get; set; }
 
         public void Initialize()
         {
@@ -25,6 +26,15 @@ namespace console_theater.Models
             Concessions.Add(new Concession("drink", 8.00m));
         }
 
+        public bool SetActiveRoom(int index)
+        {
+            if (index > -1 && index < Rooms.Count)
+            {
+                activeRoom = Rooms[index];
+                return true;
+            }
+            return false;
+        }
         public void AddRoom(Movie movie, int seats)
         {
             Rooms.Add(new Room(movie, seats));
@@ -39,16 +49,32 @@ namespace console_theater.Models
         {
             for (int i = 0; i < Rooms.Count; i++)
             {
-                System.Console.WriteLine($@"{i + 1}. {Rooms[i].Movie.Title} Showtimes:");
+                System.Console.WriteLine($@"{i + 1}. {Rooms[i].Movie.Title}");
             }
         }
+
+        public void SelectTime()
+        {
+
+            var selectingTime = true;
+
+            while (selectingTime)
+            {
+                Console.Clear();
+                //PrintShowtimes();
+
+            }
+
+
+        }
+
 
         public Theater(string name)
         {
             Name = name;
             // Movies = new List<Movie>();
-            Concessions = new List<Concession>();
             Rooms = new List<Room>();
+            Concessions = new List<Concession>();
 
 
 

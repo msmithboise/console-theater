@@ -16,11 +16,41 @@ namespace console_theater
             myTheater.AddShowtime("3:00", 0);
             myTheater.AddShowtime("5:20", 0);
             myTheater.AddShowtime("8:30", 0);
-            System.Console.WriteLine($"Welcome to {myTheater.Name} Please select a movie.");
 
 
-            myTheater.PrintMovies();
+            Movie lotr = new Movie("Lord of the Rings");
+            myTheater.AddRoom(lotr, 80);
+            myTheater.AddShowtime("11:00", 1);
+            myTheater.AddShowtime("2:00", 1);
+            myTheater.AddShowtime("7:00", 1);
+            myTheater.AddShowtime("10:00", 1);
 
+            var intheTheaterMenu = true;
+            while (intheTheaterMenu)
+            {
+                Console.Clear();
+                System.Console.WriteLine($"Welcome to {myTheater.Name} Please select a movie.");
+                myTheater.PrintMovies();
+
+
+                var userInput = Console.ReadLine();
+                if (Int32.TryParse(userInput, out int choice))
+                {
+                    if (myTheater.SetActiveRoom(0))
+                    {
+                        myTheater.activeRoom.PrintShowtimes();
+                        //take prompt for showtime
+                        Console.ReadLine();
+                    }
+
+                }
+
+            }
         }
+
+
+
+
     }
 }
+
