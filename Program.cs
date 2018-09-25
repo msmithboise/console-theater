@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using console_theater.Models;
 
 namespace console_theater
@@ -36,11 +38,33 @@ namespace console_theater
                 var userInput = Console.ReadLine();
                 if (Int32.TryParse(userInput, out int choice))
                 {
-                    if (myTheater.SetActiveRoom(0))
+                    if (myTheater.SetActiveRoom(choice - 1))
                     {
                         myTheater.activeRoom.PrintShowtimes();
                         //take prompt for showtime
-                        Console.ReadLine();
+                        var chooseShowtime = Console.ReadLine();
+                        // console.write doesn't go to the next line, they will answer on the same line.
+                        System.Console.Write("How many tickets do you want to buy? ");
+                        if (Int32.TryParse(Console.ReadLine(), out int ticketAmount))
+                        {   // this caputures the return from buy tickets, 
+                            var tickets = myTheater.activeRoom.BuyTickets(chooseShowtime, ticketAmount);
+                            if (tickets == null)
+                            {
+                                System.Console.WriteLine("Unable to purchase tickets.");
+                            }
+                            else
+                            {
+                                System.Console.WriteLine("Sucess!  Enjoy your movie!");
+                            }
+                            Thread.Sleep(1000);
+
+                        }
+
+
+
+
+
+
                     }
 
                 }

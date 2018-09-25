@@ -26,12 +26,14 @@ namespace console_theater.Models
             // this is iterating over dictionary.  time.key  and time. int
             // key is the string and the int is the value.  string is time, and int is number of seats available.  #endregion
             // for each key value pair in the dictionary, couple string and in as an object.  
-            int i = 1;
+            // int i = 1;
             foreach (KeyValuePair<string, int> showtime in Showtimes)
             {
-                System.Console.WriteLine($"{i}. {showtime.Key} - Available Seats {showtime.Value}");
-                i++;
+                System.Console.WriteLine($"{showtime.Key} - Available Seats {showtime.Value}");
+                // i++;
             }
+
+
         }
 
         public List<Ticket> BuyTickets(string showtime, int tickets)

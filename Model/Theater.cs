@@ -53,22 +53,6 @@ namespace console_theater.Models
             }
         }
 
-        public void SelectTime()
-        {
-
-            var selectingTime = true;
-
-            while (selectingTime)
-            {
-                Console.Clear();
-                //PrintShowtimes();
-
-            }
-
-
-        }
-
-
         public Theater(string name)
         {
             Name = name;
